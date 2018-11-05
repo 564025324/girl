@@ -1,4 +1,4 @@
-package com.lijwen.girl;
+package com.lijwen;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
