@@ -49,7 +49,8 @@ public class GirlController {
     @PostMapping(value = "/girls")
     public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
+            return null;
+//            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
         girl.setCupSize(girl.getCupSize());
         girl.setAge(girl.getAge());
@@ -105,7 +106,7 @@ public class GirlController {
     /**
      * 根据年龄查询
      */
-    @GetMapping(value = "girls/age/{age}")
+    @GetMapping(value = "girls/age/{getAgeage}")
     public List<Girl> girlListByAge(@PathVariable("age") Integer age) {
         return girlRepository.findByAge(age);
     }
