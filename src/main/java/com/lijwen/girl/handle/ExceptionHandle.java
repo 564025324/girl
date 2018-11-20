@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 异常捕获
  */
 @ControllerAdvice
-public class ExceptionHangle {
-    private final static Logger logger = LoggerFactory.getLogger(ExceptionHangle.class);
+public class ExceptionHandle {
+    private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody

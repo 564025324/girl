@@ -28,7 +28,7 @@ public class GirlService {
         girlRepository.save(girlB);
     }
 
-    public void getAge(Integer id) {
+    public int getAge(Integer id) {
         Girl girl = girlRepository.getOne(id);
         Integer age = girl.getAge();
         if (age < 10) {
@@ -36,6 +36,7 @@ public class GirlService {
         } else if (age > 10 && age < 16) {
             throw new GirlException(ResultEnum.MIDDLE_SCHOOL);
         }
+        return age;
     }
 
     /**
