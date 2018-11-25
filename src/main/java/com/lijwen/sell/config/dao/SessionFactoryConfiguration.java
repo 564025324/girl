@@ -4,15 +4,15 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 import java.io.IOException;
 
-@ConfigurationProperties
+@Configuration
 public class SessionFactoryConfiguration {
     // mybatis-config.xml配置文件路径
     @Value("${mybatis_config_file}")
@@ -37,8 +37,8 @@ public class SessionFactoryConfiguration {
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         String packageSearchPath = PathMatchingResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + mapperPath;
         sqlSessionFactory.setMapperLocations(resolver.getResources(packageSearchPath));
-        sqlSessionFactory.setDataSource(dataSource);
-        sqlSessionFactory.setTypeAliasesPackage(entityPackage);
+        sqlSessionFactory.setDataSource(dataSource); // 指定dataSource数据源
+        sqlSessionFactory.setTypeAliasesPackage(entityPackage); // 指定实体类扫描路径
         return sqlSessionFactory;
     }
 }

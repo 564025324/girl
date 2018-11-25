@@ -1,10 +1,18 @@
-package com.lijwen.sell.dao;
+package com.lijwen.sell.service;
 
 import com.lijwen.sell.entity.Area;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface AreaDao {
+/**
+ * Created By IntelliJ IDEA
+ * Users：Lijingwen
+ * Date:2018/11/23 0023
+ * Time:下午 10:25
+ */
+@Service
+public interface AreaService {
     /**
      * 获取所有区域列表
      *
@@ -26,7 +34,7 @@ public interface AreaDao {
      * @param area
      * @return
      */
-    int insertArea(Area area);
+    boolean addArea(Area area);
 
     /**
      * 更新区域信息
@@ -34,7 +42,7 @@ public interface AreaDao {
      * @param area
      * @return
      */
-    int updateArea(Area area);
+    boolean modifyArea(Area area);
 
     /**
      * 删除区域信息
@@ -42,5 +50,5 @@ public interface AreaDao {
      * @param areaId
      * @return
      */
-    int deleteArea(int areaId);
+    boolean deleteArea(int areaId);
 }

@@ -3,7 +3,12 @@ server:
 #  配置前缀
 #  servlet:
 #    context-path: /girl
-girl:
-  cupSize: F
-  age: 18
-  content: "cupSize:${cupSize},age:${age}"
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dbgirl
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
