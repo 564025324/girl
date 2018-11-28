@@ -1,12 +1,8 @@
 package com.lijwen.sell.config.dao;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.beans.PropertyVetoException;
 
 @Configuration
 // 配置mybatis mapper的扫描路径
@@ -22,17 +18,17 @@ public class DataSourceConfiguration {
     private String jdbcPassword;
 
     // 在Ioc中注册
-    @Bean(name = "dataSource")
-    public ComboPooledDataSource createDataSource() throws PropertyVetoException {
-        ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setDriverClass(jdbcDriver);
-        dataSource.setJdbcUrl(jdbcUrl);
-        dataSource.setUser(jdbcUsername);
-        dataSource.setPassword(jdbcPassword);
-        // 关闭连接后不自动commit
-        dataSource.setAutoCommitOnClose(false);
-
-        return dataSource;
-    }
+//    @Bean(name = "dataSource")
+//    public ComboPooledDataSource createDataSource() throws PropertyVetoException {
+//        ComboPooledDataSource dataSource = new ComboPooledDataSource();
+//        dataSource.setDriverClass(jdbcDriver);
+//        dataSource.setJdbcUrl(jdbcUrl);
+//        dataSource.setUser(jdbcUsername);
+//        dataSource.setPassword(jdbcPassword);
+//        // 关闭连接后不自动commit
+//        dataSource.setAutoCommitOnClose(false);
+//
+//        return dataSource;
+//    }
 
 }
