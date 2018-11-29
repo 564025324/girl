@@ -51,30 +51,36 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.3.1</version>
         </dependency>
-        <!-- mysql 数据库连接 -->
-        <!--<dependency>-->
-        <!--<groupId>mysql</groupId>-->
-        <!--<artifactId>mysql-connector-java</artifactId>-->
-        <!--<version>5.1.47</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>com.mchange</groupId>-->
-        <!--<artifactId>c3p0</artifactId>-->
-        <!--<version>0.9.5.2</version>-->
-        <!--</dependency>-->
-        <!-- Smms 数据库连接 -->
+        <!--mysql 数据库连接-->
         <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc4</artifactId>
-            <scope>4.0</scope>
-            <version>4.0</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.47</version>
         </dependency>
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.2</version>
+        </dependency>
+        <!--Smms 数据库连接-->
+        <!--<dependency>-->
+        <!--<groupId>com.microsoft.sqlserver</groupId>-->
+        <!--<artifactId>sqljdbc4</artifactId>-->
+        <!--<scope>4.0</scope>-->
+        <!--<version>4.0</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>com.microsoft.sqlserver</groupId>-->
+        <!--<artifactId>mssql-jdbc</artifactId>-->
+        <!--<version>6.2.0.jre8</version>-->
+        <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
 
         <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId>
-            <version>6.2.0.jre8</version>
-            <scope>runtime</scope>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.14.0</version>
         </dependency>
     </dependencies>
 
