@@ -22,11 +22,16 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!--指定java版本-->
         <java.version>1.8</java.version>
     </properties>
 
     <!--web项目必须引入的依赖-->
     <dependencies>
+        <!-- spring Boot启动器: 就是jar的集合，springboot提供了44个启动器-->
+        <!-- spring-boot-starter-web支持全栈式web开发，包括了tomcat和springMVC等的jar包集合-->
+        <!-- spring-boot-starter-jdbc 支持spring以jdbc方式操作数据库的jar包集合-->
+        <!-- sprin-boot-starter-redis 支持redis键值存储的数据库操作-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

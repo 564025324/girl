@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //@Controller
 //@ResponseBody
 //@Controller和 @ResponseBody 相当于 @RestController
@@ -24,6 +27,13 @@ public class HelloController {
     public String say(@PathVariable("id") int id) {
 //        return girlProperties.getCupSize();
         return "id :" + id;
+    }
+
+    @RequestMapping(value = "/index")
+    public Map<String, Object> showHelloWorld() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("msg", "hello world!");
+        return map;
     }
 
 }
