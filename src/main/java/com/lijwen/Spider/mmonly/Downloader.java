@@ -1,6 +1,7 @@
 package com.lijwen.Spider.mmonly;
 
 import com.lijwen.Spider.mmonly.po.PicturePo;
+import com.lijwen.Spider.mmonly.po.UrlPo;
 import com.lijwen.util.DownLoadTools;
 import com.lijwen.util.JdbcHelper;
 import org.slf4j.Logger;
@@ -27,14 +28,44 @@ public class Downloader {
 //        for(UrlPo urlpo: urllist){
 //            analyPicHtml(urlpo.getUrl());
 //        }
-
+        addOtherPageByUrl();
+        int beginPosition = 2500;
+        int leaveFileCount = 0;
         List<PicturePo> piclist = JdbcHelper.selectPicByUrl("");
-        System.out.println("预计下载图片：" + piclist.size());
+
+        System.out.println("预计下载图片：" + (piclist.size() - beginPosition));
         for (PicturePo picpo : piclist) {
-            DownLoadTools.downloadFileByUrl(picpo.getPicUrl(), "g:/spilder/" + picpo.getPicName() + ".jpg");
+            if (picpo.getId() > beginPosition) {
+                beginPosition++;
+                DownLoadTools.downloadFileByUrl(picpo.getPicUrl(), "g:/spilder/" + picpo.getPicName() + ".jpg");
+                leaveFileCount = piclist.size() - beginPosition;
+                if (leaveFileCount % 10 == 0) {
+                    System.out.println("剩余[" + leaveFileCount + "]个文件下载");
+                }
+            }
         }
     }
 
+
+    // 根据已知地址，增加翻页地址
+    public static void addOtherPageByUrl() throws Exception {
+        List<UrlPo> urllist = JdbcHelper.selectUrldbByUrl("");
+        for (UrlPo url : urllist) {
+            if (url.getId() > 400 && url.getId() < 420) {
+                for (int i = 2; i < 10; i++) {
+                    String new_url = url.getUrl().replace(".html", "_" + i + ".html");
+                    try {
+                        URL urladd = new URL(new_url);
+                        urladd.openStream();
+                        logger.info("当前地址可用");
+                    } catch (Exception e) {
+                        logger.error("无法加载当前地址");
+                    }
+                    analyPicHtml(new_url);
+                }
+            }
+        }
+    }
 
     // 分析指定url
     public static void analyPicHtml(String strUrl) {

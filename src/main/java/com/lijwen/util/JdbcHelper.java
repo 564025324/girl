@@ -70,6 +70,7 @@ public class JdbcHelper {
 
             while (rs.next()) {
                 UrlPo urlinfo = new UrlPo();
+                urlinfo.setId(rs.getLong(1));
                 urlinfo.setUrl(rs.getString(2));
                 list.add(urlinfo);
             }
@@ -96,6 +97,7 @@ public class JdbcHelper {
 
             while (rs.next()) {
                 PicturePo pic = new PicturePo();
+                pic.setId(rs.getLong(1));
                 pic.setPicUrl(rs.getString(2));
                 pic.setPicName(rs.getString(3));
                 list.add(pic);

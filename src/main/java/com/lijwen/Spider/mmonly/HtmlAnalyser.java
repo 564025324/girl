@@ -52,6 +52,7 @@ public class HtmlAnalyser {
         SpilderService.getHtmlByLine(line, url);
     }
 
+    // 初始化所有主页上的图片url
     public static void collectMailHtml() {
         for (int i = 1; i <= 830; i++) {
             if (i == 1) {
@@ -63,5 +64,12 @@ public class HtmlAnalyser {
 
     public static void main(String[] args) {
 //        collectMailHtml();
+        int a = 3000;
+        while (a > 0) {
+            a = a - 1;
+            if ((a % 20) == 0) {
+                System.out.println(a);
+            }
+        }
     }
 }
