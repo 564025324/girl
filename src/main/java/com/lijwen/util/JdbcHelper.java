@@ -136,7 +136,7 @@ public class JdbcHelper {
             conn = getConnection();
             String sql = "insert into url_pic(url_name,url_addr) values (?,?);";
             pstm = conn.prepareStatement(sql);
-            pstm.setString(1, pic.getPicName());
+            pstm.setString(1, pic.getPicUrl());
             pstm.setString(2, pic.getPicName());
             pstm.executeUpdate();
         } catch (Exception e) {

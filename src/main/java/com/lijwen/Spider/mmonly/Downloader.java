@@ -1,6 +1,7 @@
 package com.lijwen.Spider.mmonly;
 
-import com.lijwen.Spider.mmonly.po.UrlPo;
+import com.lijwen.Spider.mmonly.po.PicturePo;
+import com.lijwen.util.DownLoadTools;
 import com.lijwen.util.JdbcHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,16 +21,18 @@ import java.util.List;
  */
 public class Downloader {
     private final static Logger logger = LoggerFactory.getLogger(Downloader.class);
-    // DownLoadTools.downloadFileByUrl(pic.getPicUrl(), "g:/spilder/" + pic.getPicName() + ".jpg");
 
     public static void main(String[] args) throws Exception {
-        List<UrlPo> urllist = JdbcHelper.selectUrldbByUrl("");
+//        List<UrlPo> urllist = JdbcHelper.selectUrldbByUrl("");
 //        for(UrlPo urlpo: urllist){
 //            analyPicHtml(urlpo.getUrl());
 //        }
 
-
-        analyPicHtml(urllist.get(0).getUrl());
+        List<PicturePo> piclist = JdbcHelper.selectPicByUrl("");
+        System.out.println("预计下载图片：" + piclist.size());
+        for (PicturePo picpo : piclist) {
+            DownLoadTools.downloadFileByUrl(picpo.getPicUrl(), "g:/spilder/" + picpo.getPicName() + ".jpg");
+        }
     }
 
 
@@ -39,14 +42,11 @@ public class Downloader {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(new URL(strUrl).openStream(), "gbk"));
             String line;
-            UrlPo urlObject = new UrlPo();
-            urlObject.setUrl(strUrl);
-            StringBuffer text = new StringBuffer();
             while ((line = in.readLine()) != null) {
-                text = text.append(line + "\n");
+                if (line.contains("class=\"down-btn\"")) {
+                    SpilderService.getPicByLine(line);
+                }
             }
-            System.out.println(text);
-            SpilderService.getPicByHtmlText(text.toString());
         } catch (MalformedURLException e) {
             logger.error("输入url异常");
         } catch (IOException e) {

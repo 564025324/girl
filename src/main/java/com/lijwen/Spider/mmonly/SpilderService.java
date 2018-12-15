@@ -40,43 +40,22 @@ public class SpilderService {
     /**
      * 获取明细画册的图片地址信息
      *
-     * @param text
+     * @param line
      */
-    public static void getPicByHtmlText(String text) throws Exception {
-        // 下载原图
-        if (!text.contains("down-btn")) {
-            logger.error("未获取到图片下载按钮");
-        }
+    public static void getPicByLine(String line) throws Exception {
         PicturePo pic = new PicturePo();
-
-        // 获取可翻页数
-        Pattern page_pattern = Pattern.compile(page_regex);
-        Matcher page_matcher = page_pattern.matcher(text);
-        if (page_matcher.find()) {
-            String pagenum = page_matcher.group().replace("<span class=\"totalpage\">", "").replace("</span>)", "");
-            pic.setPicPage(Integer.valueOf(pagenum));
-        } else {
-            logger.error("未获取到翻页信息");
-        }
-
         // 获取图片地址
         Pattern pic_pattern = Pattern.compile(picture_regex);
-        Matcher pic_matcher = pic_pattern.matcher(text);
+        Matcher pic_matcher = pic_pattern.matcher(line);
         if (pic_matcher.find()) {
             pic.setPicUrl(pic_matcher.group());
-            pic.setPicName(pic.getPicUrl().split("/")[pic.getPicUrl().split("/").length - 1]);
+            pic.setPicName(String.valueOf(System.currentTimeMillis()));
+            //pic.setPicName(pic.getPicUrl().split("/")[pic.getPicUrl().split("/").length - 1]);
         } else {
             logger.error("未获取到图片地址信息");
         }
-        JdbcHelper.insertPictureUrl(pic);
-
-        for (int i = 2; i <= pic.getPicPage(); i++) {
-            UrlPo url_fanye = new UrlPo(pic.getPicUrl().replace(".html", "_" + i + ".html"), pic.getPicPage());
-            if (JdbcHelper.selectUrldbByUrl(url_fanye.getUrl()).size() == 0) {
-                JdbcHelper.insertHtmlUrl(url_fanye);
-            } else {
-                return;
-            }
+        if (JdbcHelper.selectPicByUrl(pic.getPicUrl()).size() == 0) {
+            JdbcHelper.insertPictureUrl(pic);
         }
     }
 }
