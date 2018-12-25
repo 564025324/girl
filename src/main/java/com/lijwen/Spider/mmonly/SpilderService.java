@@ -33,7 +33,9 @@ public class SpilderService {
             url.setUrl(web_matcher.group().replace("<a target=\"_blank\" href=\"", "").replace("\"><img", ""));
             url.setUrl_type(0);
             url.setDownloadflag(true);
-            JdbcHelper.insertHtmlUrl(url);
+            if(JdbcHelper.selectUrldbByUrl(url.getUrl()).size()==0) {
+                JdbcHelper.insertHtmlUrl(url);
+            }
         }
     }
 

@@ -63,13 +63,13 @@ public class HtmlAnalyser {
     }
 
     public static void main(String[] args) {
-//        collectMailHtml();
-        int a = 3000;
-        while (a > 0) {
-            a = a - 1;
-            if ((a % 20) == 0) {
-                System.out.println(a);
-            }
-        }
+        collectMailHtml();
+//        int a = 3000;
+//        while (a > 0) {
+//            a = a - 1;
+//            if ((a % 20) == 0) {
+//                System.out.println(a);
+//            }
+//        }
     }
 }

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,21 +24,33 @@ import java.util.List;
 public class Downloader {
     private final static Logger logger = LoggerFactory.getLogger(Downloader.class);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 //        List<UrlPo> urllist = JdbcHelper.selectUrldbByUrl("");
 //        for(UrlPo urlpo: urllist){
 //            analyPicHtml(urlpo.getUrl());
 //        }
-        addOtherPageByUrl();
-        int beginPosition = 2500;
+//        addOtherPageByUrl();
+        int beginPosition = 6730;
         int leaveFileCount = 0;
-        List<PicturePo> piclist = JdbcHelper.selectPicByUrl("");
+        List<PicturePo> piclist = null;
+        try {
+            piclist = JdbcHelper.selectPicByUrl("");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("数据库查询异常");
+        }
 
         System.out.println("预计下载图片：" + (piclist.size() - beginPosition));
         for (PicturePo picpo : piclist) {
             if (picpo.getId() > beginPosition) {
                 beginPosition++;
-                DownLoadTools.downloadFileByUrl(picpo.getPicUrl(), "g:/spilder/" + picpo.getPicName() + ".jpg");
+                try {
+                    DownLoadTools.downloadFileByUrl(picpo.getPicUrl(), "d:/spilder/" + picpo.getPicName() + ".jpg");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("下载异常");
+                    continue;
+                }
                 leaveFileCount = piclist.size() - beginPosition;
                 if (leaveFileCount % 10 == 0) {
                     System.out.println("剩余[" + leaveFileCount + "]个文件下载");
@@ -51,7 +64,6 @@ public class Downloader {
     public static void addOtherPageByUrl() throws Exception {
         List<UrlPo> urllist = JdbcHelper.selectUrldbByUrl("");
         for (UrlPo url : urllist) {
-            if (url.getId() > 400 && url.getId() < 420) {
                 for (int i = 2; i < 10; i++) {
                     String new_url = url.getUrl().replace(".html", "_" + i + ".html");
                     try {
@@ -63,7 +75,6 @@ public class Downloader {
                     }
                     analyPicHtml(new_url);
                 }
-            }
         }
     }
 
