@@ -4,7 +4,7 @@ import com.lijwen.girl.domail.Girl;
 import com.lijwen.girl.domail.Result;
 import com.lijwen.girl.repository.GirlRepository;
 import com.lijwen.girl.service.GirlService;
-import com.lijwen.girl.util.ResultUtil;
+import com.lijwen.util.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

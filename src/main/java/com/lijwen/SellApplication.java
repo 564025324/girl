@@ -1,6 +1,6 @@
 package com.lijwen;
 
-import com.lijwen.girl.filter.SecondFilter;
+import com.lijwen.Login.filter.LoginFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -30,9 +30,16 @@ public class SellApplication {
     //        return bean;
     //    }
 
-    @Bean // 注册filter方法二
+    //    @Bean // 注册filter方法二
+    //    public FilterRegistrationBean getServletRegistrationBean() {
+    //        FilterRegistrationBean bean = new FilterRegistrationBean(new SecondFilter());
+    //        bean.addUrlPatterns("/*");
+    //        return bean;
+    //    }
+
+    @Bean
     public FilterRegistrationBean getServletRegistrationBean() {
-        FilterRegistrationBean bean = new FilterRegistrationBean(new SecondFilter());
+        FilterRegistrationBean bean = new FilterRegistrationBean(new LoginFilter());
         bean.addUrlPatterns("/*");
         return bean;
     }

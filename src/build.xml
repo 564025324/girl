@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- project 用于定义一个ant工程，其中三项name、default、basedir缺一不可
+作用分别为：定义工程名、指定默认执行的任务、工程基础的路径(他是计算其它路径的基础，一般情况下使用“.”即在java工程根目录)
+-->
+<project name="anttest" default="jar" basedir=".">
+    描述
+    <description>easy ant</description>
+</project>

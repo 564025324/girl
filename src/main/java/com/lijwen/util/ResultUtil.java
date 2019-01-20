@@ -1,4 +1,4 @@
-package com.lijwen.girl.util;
+package com.lijwen.util;
 
 import com.lijwen.girl.domail.Result;
 
